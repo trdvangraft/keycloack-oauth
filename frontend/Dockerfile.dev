@@ -1,0 +1,19 @@
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Build argument for API URL
+ARG VITE_API_URL=http://localhost:80
+ENV VITE_API_URL=$VITE_API_URL
+
+# Copy package files
+COPY package.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source files
+COPY . .
+
+# Start Vite dev server with hot reload
+CMD ["npm", "run", "dev"]

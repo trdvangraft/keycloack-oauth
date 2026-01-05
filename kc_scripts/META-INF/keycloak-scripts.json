@@ -1,0 +1,14 @@
+{
+  "policies": [
+    {
+      "name": "Location External Policy",
+      "fileName": "location-external.js",
+      "description": "Grants when location == external"
+    },
+    {
+      "name": "Location Onprem Policy",
+      "fileName": "location-onprem.js",
+      "description": "Grants when location == onprem"
+    }
+  ]
+}
