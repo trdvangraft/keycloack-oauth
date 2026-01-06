@@ -53,6 +53,8 @@ async def get_current_user(token: str = Security(oauth2_scheme)) -> KeyCloakUser
 
     print(token_info)
     print(token)
+    print(f"userinfo {userinfo}")
+
     # print(keycloak_openid.get_permissions(token=token))
 
     # ---- Map Keycloak roles → permissions ----

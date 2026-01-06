@@ -77,7 +77,7 @@ services:
 
       KC_FEATURES: scripts
     volumes:
-      - ./kc_scripts/keycloak-policies.jar:/opt/keycloak/providers/keycloak-policies.jar:ro
+      - ./kc_scripts/keycloak-policies2.jar:/opt/keycloak/providers/keycloak-policies.jar
     depends_on:
       - keycloak_postgres
     networks:

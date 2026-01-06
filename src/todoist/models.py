@@ -6,6 +6,7 @@ class KeyCloakUser(BaseModel):
     username: str | None = None
     email: str | None = None
     permissions: list[str] = []
+    location: str | None = None
 
 
 class AuthConfig(BaseModel):

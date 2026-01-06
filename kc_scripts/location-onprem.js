@@ -4,6 +4,6 @@ var attrs = identity.getAttributes();
 var locAttr = attrs.getValue('location');
 var loc = locAttr ? locAttr.asString(0) : null;
 
-if (loc === 'external') {
+if (loc === 'onpremise') {
   $evaluation.grant();
 }

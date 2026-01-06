@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     server_url: str = "http://keycloak:8080/auth/"
     client_id: str = "todoist-app"
     realm: str = "todoist-realm"
-    client_secret: str = "wFQEH8c2BAz9EqiCN8s7vK9sKXRsbaQ2"
+    client_secret: str = "7BtZgz77QRvktiyxn0zYXgwZLyinABJ3"
     frontend_url: str = "http://localhost"
 
 

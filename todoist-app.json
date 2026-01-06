@@ -1,0 +1,146 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "Default Resource",
+      "type": "urn:todoist-app:resources:default",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [
+        "/*"
+      ]
+    },
+    {
+      "name": "todoist-resource",
+      "ownerManagedAccess": false,
+      "displayName": "Todoist resource",
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "read"
+        },
+        {
+          "name": "write"
+        }
+      ],
+      "icon_uri": ""
+    }
+  ],
+  "policies": [
+    {
+      "name": "Default Policy",
+      "description": "A policy that grants access only for users within this realm",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+      }
+    },
+    {
+      "name": "analytics-location-onprem-policy",
+      "description": "",
+      "type": "script-location-onprem.js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {}
+    },
+    {
+      "name": "analytics-location-external-policy",
+      "description": "",
+      "type": "script-location-external.js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {}
+    },
+    {
+      "name": "analytics-role-read-policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "fetchRoles": "false",
+        "roles": "[{\"id\":\"todoist-app/analytics:read\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "analytics-role-write-policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "fetchRoles": "false",
+        "roles": "[{\"id\":\"todoist-app/analytics:write\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "analytics-time-policy",
+      "description": "",
+      "type": "time",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "hourEnd": "",
+        "monthEnd": "",
+        "noa": "2026-02-05 00:00:00",
+        "minuteEnd": "",
+        "nbf": "2026-01-05 00:00:00",
+        "hour": "",
+        "month": "",
+        "dayMonth": "",
+        "dayMonthEnd": "",
+        "minute": ""
+      }
+    },
+    {
+      "name": "Default Permission",
+      "description": "A permission that applies to the default resource type",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "defaultResourceType": "urn:todoist-app:resources:default",
+        "applyPolicies": "[\"Default Policy\"]"
+      }
+    },
+    {
+      "name": "analytics-read-permission",
+      "description": "",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"todoist-resource\"]",
+        "scopes": "[\"read\"]",
+        "applyPolicies": "[\"analytics-role-read-policy\"]"
+      }
+    },
+    {
+      "name": "analytics-write-permission",
+      "description": "",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"todoist-resource\"]",
+        "scopes": "[\"write\"]",
+        "applyPolicies": "[\"analytics-role-write-policy\",\"analytics-time-policy\",\"analytics-location-onprem-policy\"]"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "name": "read",
+      "iconUri": ""
+    },
+    {
+      "name": "write",
+      "iconUri": ""
+    }
+  ],
+  "decisionStrategy": "UNANIMOUS"
+}
